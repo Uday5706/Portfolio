@@ -15,7 +15,7 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="w-full px-6 flex justify-between items-center py-6 relative">
+    <nav className="w-full border border-b-2 border-text-main/30 px-6 flex justify-between items-center py-6 relative">
       
       {/* LEFT SIDE: Hamburger + Logo + Desktop Links */}
       <div className="flex items-center gap-4 md:gap-8 relative">
@@ -47,7 +47,7 @@ export default function Navbar() {
         {/* ======================================================== */}
         <div 
           className={`
-            absolute top-12 left-0 w-48 bg-navy-light border border-gray-700 shadow-2xl rounded-xl p-4 flex flex-col gap-4 md:hidden z-40
+            absolute top-12 left-0 w-48 bg-navy-light  shadow-2xl rounded-xl p-4 flex flex-col gap-4 md:hidden z-40
             transform origin-top-left transition-all duration-300 ease-out
             ${isMobileMenuOpen 
               ? 'opacity-100 scale-100 pointer-events-auto translate-y-0' 

@@ -3,11 +3,15 @@
 
 @theme {
   --font-nunito: "Nunito", sans-serif;
---color-navy: var(--bg-base);
+  --color-navy: var(--bg-base);
   --color-navy-light: var(--bg-surface);
   --color-mint: var(--accent);
   --color-text-main: var(--text-main);
   --color-text-muted: var(--text-muted);
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
 }
 
 @layer base {
@@ -30,7 +34,7 @@
     --bg-base: #f5f0e1;     
     --bg-surface: #e6dfc8;  
     --text-main: #3e2723;   
-    --text-muted: #5d4037;  
+    --text-muted: #845d51;  
     --accent: #d84315;      
   }
 }
@@ -88,4 +92,24 @@ body {
 }
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: var(--accent);
+}
+::selection {
+  background-color: var(--accent);
+  color: var(--bg-base);
+}
+
+/* The actual movement of the wiggle */
+@keyframes fluidWiggle {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(3px, -2px) scale(1.1);
+  }
+  50% {
+    transform: translate(-2px, 3px) scale(0.95);
+  }
+  75% {
+    transform: translate(-3px, -1px) scale(1.05);
+  }
 }

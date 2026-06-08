@@ -4,25 +4,27 @@ import About from './components/About';
 import Experience from './components/Experience';
 import Builds from './components/Builds';
 import Footer from './components/Footer';
-import { useEffect,useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
   const [isSandTheme, setIsSandTheme] = useState(false);
 
-  // 2. Inject or remove the class on the document body whenever the state changes
   useEffect(() => {
+    const root = document.documentElement; 
+    
     if (isSandTheme) {
-      document.body.classList.add('theme-sand');
+      root.classList.add('theme-sand');
     } else {
-      document.body.classList.remove('theme-sand');
+      root.classList.remove('theme-sand');
     }
   }, [isSandTheme]);
 
   return (
-    <div className="bg-navy min-h-screen text-gray-300 font-poppins relative">
+    /* Added transition-colors and duration-500 alongside text-text-main to handle global canvas shifts */
+    <div className="bg-navy min-h-screen text-text-main font-poppins relative transition-colors duration-500 flex flex-col">
       
       {/* Fixed Navbar */}
-      <div className="fixed top-0 w-full z-50 bg-navy/90 backdrop-blur-sm">
+      <div className="fixed top-0 w-full z-50 bg-navy/90 backdrop-blur-sm transition-colors duration-500">
         <Navbar />
       </div>
 
@@ -30,16 +32,16 @@ function App() {
       <div className="fixed top-24 left-10 z-40 hidden md:block">
         <button 
           onClick={() => setIsSandTheme(!isSandTheme)}
-          className="flex items-center gap-2 px-4 py-2 rounded-full border border-gray-600 text-xs tracking-widest text-text-muted hover:text-text-main hover:border-text-main transition-all bg-navy/50 backdrop-blur-sm"
+          className="flex items-center gap-2 px-4 py-2 rounded-full border border-text-muted/30 text-xs tracking-widest text-text-muted hover:text-text-main hover:border-text-main transition-all bg-navy/50 backdrop-blur-sm duration-500"
         >
-          {/* Indicator Dot */}
-          <div className={`w-2 h-2 rounded-full transition-colors duration-300 ${isSandTheme ? 'bg-mint shadow-[0_0_8px_var(--accent)]' : 'bg-gray-400'}`}></div>
+          {/* Dynamic Indicator Dot with Glow Effect */}
+          <div className={`w-2 h-2 rounded-full transition-colors duration-500 ${isSandTheme ? 'bg-mint shadow-[0_0_8px_var(--accent)]' : 'bg-text-muted/50'}`}></div>
           {isSandTheme ? 'SAND MODE' : 'GAME MODE'}
         </button>
       </div>
 
       {/* THE MASTER CONTAINER */}
-      <div className="max-w-6xl mx-auto px-12 md:px-12 pt-12 flex flex-col gap-6 md:gap-24">
+      <div className="max-w-6xl mx-auto px-6 md:px-12 pt-24 flex flex-col gap-12 md:gap-24 w-full flex-1">
         <Home />
         <About />
         <Experience />

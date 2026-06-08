@@ -19,7 +19,7 @@
       "patternPosition": "left"
     },
     "content": {
-      "heading": "hi, uday here...",
+      "heading": "hi, uday here..",
       "description": "Software engineer and student at Delhi Technological University. I build logistics systems by day and make strange little projects at the intersection of tech and art by night. Occasionally both happen at the same time.",
       "buttonText": "Say hi!"
     },
@@ -69,55 +69,6 @@
         "role": "Hackathon Participant",
         "duration": "FEB 2026",
         "bullets": [
-          "Competed in a rigorous 24-hour hackathon organized by the MSIT.",
-          "Won & Developed a prototype aimed at identifying early children mental problems using AI and games."
-        ]
-      },
-      {
-        "company": "Hackavenesis",
-        "role": "Hackathon Participant",
-        "duration": "FEB 2026",
-        "bullets": [
-          "Competed in a rigorous 24-hour hackathon organized by the MSIT.",
-          "Won & Developed a prototype aimed at identifying early children mental problems using AI and games."
-        ]
-      },
-      {
-        "company": "Hackavenesis",
-        "role": "Hackathon Participant",
-        "duration": "FEB 2026",
-        "bullets": [
-          "Competed in a rigorous 24-hour hackathon organized by the MSIT.",
-          "Won & Developed a prototype aimed at identifying early children mental problems using AI and games."
-        ]
-      },
-      {
-        "company": "Hackavenesis",
-        "role": "Hackathon Participant",
-        "duration": "FEB 2026",
-        "bullets": [
-          "Competed in a rigorous 24-hour hackathon organized by the MSIT.",
-          "Won & Developed a prototype aimed at identifying early children mental problems using AI and games."
-        ]
-      },
-      {
-        "company": "Hackavenesis",
-        "role": "Hackathon Participant",
-        "duration": "FEB 2026",
-        "bullets": [
-          "Competed in a rigorous 24-hour hackathon organized by the MSIT.",
-          "Won & Developed a prototype aimed at identifying early children mental problems using AI and games."
-        ]
-      },
-      {
-        "company": "Hackavenesis",
-        "role": "Hackathon Participant",
-        "duration": "FEB 2026",
-        "bullets": [
-          "Competed in a rigorous 24-hour hackathon organized by the MSIT.",
-          "Competed in a rigorous 24-hour hackathon organized by the MSIT.",
-          "Competed in a rigorous 24-hour hackathon organized by the MSIT.",
-          "Competed in a rigorous 24-hour hackathon organized by the MSIT.",
           "Competed in a rigorous 24-hour hackathon organized by the MSIT.",
           "Won & Developed a prototype aimed at identifying early children mental problems using AI and games."
         ]
