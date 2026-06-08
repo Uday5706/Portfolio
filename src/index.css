@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-nunito: "Nunito", sans-serif;
+--color-navy: var(--bg-base);
+  --color-navy-light: var(--bg-surface);
+  --color-mint: var(--accent);
+  --color-text-main: var(--text-main);
+  --color-text-muted: var(--text-muted);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  /* DEFAULT THEME (Dark Navy / Hacker) */
+  :root {
+    --bg-base: #0a192f;
+    --bg-surface: #112240;
+    --text-main: #e2e8f0;   
+    --text-muted: #8892b0;  
+    --accent: #64ffda;      
+  }
+
+  /* SAND THEME (Triggered by adding className="theme-sand" to your <body> tag) */
+  .theme-sand {
+    --bg-base: #f5f0e1;     
+    --bg-surface: #e6dfc8;  
+    --text-main: #3e2723;   
+    --text-muted: #5d4037;  
+    --accent: #d84315;      
+  }
+}
+
+body {
+  @apply bg-navy text-gray-300 font-bold font-nunito;
+}
+
+@keyframes blink {
+  0%, 49% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
+}
+
+@layer utilities {
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+.animate-marquee {
+  /* Adjust the 25s to make it scroll faster or slower */
+  animation: marquee 25s linear infinite; 
+}
+
+/* Pauses the scrolling when the mouse is over the skills */
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  /* Moves exactly half the width of the container */
+  100% { transform: translateX(-50%); } 
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--bg-base);
+  opacity: 0.5;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #374151; /* You can map this to a theme variable later if you want! */
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}

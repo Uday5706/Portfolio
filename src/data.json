@@ -1,0 +1,183 @@
+{
+  "navbar": {
+    "logo": "Uday Kumar",
+    "socials": {
+      "email": "mailto:udaykumar5706@gmail.com",
+      "github": "https://github.com/Uday5706",
+      "linkedin": "https://www.linkedin.com/in/uday-kumar-25a6aa323/",
+      "blog": "https://yourblog.com" 
+    }
+  },
+  "sections": [
+    { "id": "home", "title": "Home" },
+    { "id": "about", "title": "About" },
+    { "id": "experience", "title": "Experience" },
+    { "id": "builds", "title": "Builds" }
+  ],
+  "hero": {
+    "layout": {
+      "patternPosition": "left"
+    },
+    "content": {
+      "heading": "hi, uday here...",
+      "description": "Software engineer and student at Delhi Technological University. I build logistics systems by day and make strange little projects at the intersection of tech and art by night. Occasionally both happen at the same time.",
+      "buttonText": "Say hi!"
+    },
+    "formatting": {
+      "boldWords": ["strange little projects", "Delhi Technological University"],
+      "highlightedWords": ["uday", "logistics systems"]
+    }
+  },
+  "about": {
+    "layout": {
+      "skillsDisplay": "carousel",
+      "imagePosition": "right" 
+    },
+    "imagePath": "/uday-profile.jpg",
+    "heading": "/ about me",
+    "description": "I am an engineering student focused on computer science and software development. I enjoy building things from scratch, whether that means engineering a logistics tracker or designing an interactive UI layout.",
+    "skills": ["React.js", "Flutter", "C++", "JavaScript", "Dart", "Node.js", "Firebase", "MongoDB", "Three.js"],
+    "formatting": {
+      "boldWords": ["engineering student", "building things from scratch"],
+      "highlightedWords": ["computer science", "software development"]
+    }
+  },
+  "experience": {
+    "heading": "/ experience",
+    "jobs": [
+      {
+        "company": "brAInwave 2.0",
+        "role": "Hackathon Participant",
+        "duration": "JAN 2026",
+        "bullets": [
+          "Competed in a rigorous 36-hour hackathon at Delhi Technological University.",
+          "Collaborated with a team to conceptualize and develop functional prototypes under strict time constraints.",
+          "Engineered solutions utilizing modern web frameworks to ensure a seamless user experience."
+        ]
+      },
+      {
+        "company": "SIH (Smart India Hackathon)",
+        "role": "Hackathon Participant",
+        "duration": "SEP 2025",
+        "bullets": [
+          "Registered and led a development team for the national-level Smart India Hackathon.",
+          "Focused on solving real-world logistical and tracking problems using scalable software architecture."
+        ]
+      },
+      {
+        "company": "Hackavenesis",
+        "role": "Hackathon Participant",
+        "duration": "FEB 2026",
+        "bullets": [
+          "Competed in a rigorous 24-hour hackathon organized by the MSIT.",
+          "Won & Developed a prototype aimed at identifying early children mental problems using AI and games."
+        ]
+      },
+      {
+        "company": "Hackavenesis",
+        "role": "Hackathon Participant",
+        "duration": "FEB 2026",
+        "bullets": [
+          "Competed in a rigorous 24-hour hackathon organized by the MSIT.",
+          "Won & Developed a prototype aimed at identifying early children mental problems using AI and games."
+        ]
+      },
+      {
+        "company": "Hackavenesis",
+        "role": "Hackathon Participant",
+        "duration": "FEB 2026",
+        "bullets": [
+          "Competed in a rigorous 24-hour hackathon organized by the MSIT.",
+          "Won & Developed a prototype aimed at identifying early children mental problems using AI and games."
+        ]
+      },
+      {
+        "company": "Hackavenesis",
+        "role": "Hackathon Participant",
+        "duration": "FEB 2026",
+        "bullets": [
+          "Competed in a rigorous 24-hour hackathon organized by the MSIT.",
+          "Won & Developed a prototype aimed at identifying early children mental problems using AI and games."
+        ]
+      },
+      {
+        "company": "Hackavenesis",
+        "role": "Hackathon Participant",
+        "duration": "FEB 2026",
+        "bullets": [
+          "Competed in a rigorous 24-hour hackathon organized by the MSIT.",
+          "Won & Developed a prototype aimed at identifying early children mental problems using AI and games."
+        ]
+      },
+      {
+        "company": "Hackavenesis",
+        "role": "Hackathon Participant",
+        "duration": "FEB 2026",
+        "bullets": [
+          "Competed in a rigorous 24-hour hackathon organized by the MSIT.",
+          "Competed in a rigorous 24-hour hackathon organized by the MSIT.",
+          "Competed in a rigorous 24-hour hackathon organized by the MSIT.",
+          "Competed in a rigorous 24-hour hackathon organized by the MSIT.",
+          "Competed in a rigorous 24-hour hackathon organized by the MSIT.",
+          "Won & Developed a prototype aimed at identifying early children mental problems using AI and games."
+        ]
+      }
+    ],
+    "formatting": {
+      "boldWords": ["36-hour hackathon", "30-hour mentorship journey", "scalable software architecture"],
+      "highlightedWords": ["Delhi Technological University", "Community Engagement"]
+    }
+  },
+  "builds": {
+    "heading": "/ builds",
+    "viewAllText": "View all builds →",
+    "projects": [
+      {
+        "title": "Rayride",
+        "description": "A comprehensive logistics and tracking system featuring real-time map polylines and socket service integration for live driver location tracking.",
+        "techStack": ["React", "Socket.io", "Maps API", "Node.js"],
+        "github": "https://github.com/yourusername/rayride",
+        "external": "https://rayride.com",
+        "imagePath": "/rayride-bg.png"
+      },
+      {
+        "title": "Spotify-Web App",
+        "description": "A web-based clone of the Spotify application, handling audio streaming states and dynamic CSS UI components.",
+        "techStack": ["React", "Firebase", "Vite", "CSS"],
+        "github": "https://github.com/yourusername/spotify-clone",
+        "external": "https://spotify-clone.com",
+        "imagePath": "/spotify-bg.png"
+      },
+      {
+        "title": "Budgit",
+        "description": "A mobile application designed for intuitive food budgeting and expense tracking. Features a custom-built budget controller logic and sleek UI.",
+        "techStack": ["Flutter", "Dart", "Provider"],
+        "github": "https://github.com/yourusername/budgit",
+        "external": ""
+      },
+      {
+        "title": "IoT Smart Recycling Bin",
+        "description": "An automated smart bin system modeled using pushdown automaton and state transition diagrams to theoretically optimize waste management logic.",
+        "techStack": ["Automata Theory", "C++", "IoT"],
+        "github": "https://github.com/yourusername/smart-bin",
+        "external": ""
+      },
+      {
+        "title": "Surat Sparkle Storefront",
+        "description": "A digital storefront and comprehensive branding identity for a jewelry company, including modular UI for their 10+1 monthly subscription plan.",
+        "techStack": ["UI/UX", "React", "Tailwind CSS"],
+        "github": "",
+        "external": "https://suratsparkle.com"
+      }
+    ],
+    "formatting": {
+      "boldWords": ["real-time map polylines", "socket service integration", "pushdown automaton", "budget controller logic"],
+      "highlightedWords": ["Rayride", "Budgit", "Spotify"]
+    }
+  
+  },
+  "footer": {
+    "text": "Designed & Built by Uday",
+    "copyright": "© 2026 All Rights Reserved."
+  }
+}
