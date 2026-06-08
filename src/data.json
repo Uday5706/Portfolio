@@ -30,13 +30,13 @@
   },
   "about": {
     "layout": {
-      "skillsDisplay": "carousel",
+      "skillsDisplay": "pill",
       "imagePosition": "right" 
     },
     "imagePath": "/uday-profile.jpg",
     "heading": "/ about me",
     "description": "I am an engineering student focused on computer science and software development. I enjoy building things from scratch, whether that means engineering a logistics tracker or designing an interactive UI layout.",
-    "skills": ["React.js", "Flutter", "C++", "JavaScript", "Dart", "Node.js", "Firebase", "MongoDB", "Three.js"],
+    "skills": ["React.js", "Flutter", "C++", "JavaScript", "Dart", "Node.js", "Firebase", "MongoDB", "NextJS","Tailwind CSS","ML","Flutter"],
     "formatting": {
       "boldWords": ["engineering student", "building things from scratch"],
       "highlightedWords": ["computer science", "software development"]

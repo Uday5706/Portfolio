@@ -4,8 +4,8 @@ interface AsciiWiggleProps {
   src: string;
   width?: number;
   height?: number;
-  resolution?: number; // Distance between characters
-  repelRadius?: number; // How large the mouse interaction area is
+  resolution?: number; 
+  repelRadius?: number; 
 }
 
 const ASCII_CHARS = ' .:-=+*#%@';
@@ -18,7 +18,6 @@ export const AsciiRepel: React.FC<AsciiWiggleProps> = ({
   repelRadius = 60,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  // We store the current color in a ref so the animation loop can always access the freshest color
   const themeColorRef = useRef<string>('#64ffda'); 
 
   useEffect(() => {
@@ -29,39 +28,31 @@ export const AsciiRepel: React.FC<AsciiWiggleProps> = ({
 
     // --- THEME INTEGRATION ---
     const updateThemeColor = () => {
-      // Read from document.documentElement because that is where your App component applies 'theme-sand'
       const computedStyle = getComputedStyle(document.documentElement);
-      // Grab the --accent variable (not --color-navy, since accent is your mint/orange text color)
       const newColor = computedStyle.getPropertyValue('--accent').trim();
-      if (newColor) {
-        themeColorRef.current = newColor;
-      }
+      if (newColor) themeColorRef.current = newColor;
     };
 
-    // 1. Get the color immediately on load
     updateThemeColor();
-
-    // 2. Set up an observer to watch the <html> tag for any class changes
-    const observer = new MutationObserver(() => {
-      updateThemeColor();
-    });
-
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['class'],
-    });
+    const observer = new MutationObserver(updateThemeColor);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
     // -------------------------
 
     let particles: any[] = [];
     let animationFrameId: number;
+    let frameCount = 0; // Used to stagger the entrance animation
     
-    // Track mouse position
     let mouse = { x: -1000, y: -1000, isActive: false };
 
+    // --- ENHANCED MOUSE EVENTS ---
     const handleMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
       mouse.x = e.clientX - rect.left;
       mouse.y = e.clientY - rect.top;
+      mouse.isActive = true;
+    };
+
+    const handleMouseEnter = () => {
       mouse.isActive = true;
     };
 
@@ -72,6 +63,7 @@ export const AsciiRepel: React.FC<AsciiWiggleProps> = ({
     };
 
     canvas.addEventListener('mousemove', handleMouseMove);
+    canvas.addEventListener('mouseenter', handleMouseEnter); // Fixes the reload bug!
     canvas.addEventListener('mouseleave', handleMouseLeave);
 
     const img = new Image();
@@ -105,9 +97,13 @@ export const AsciiRepel: React.FC<AsciiWiggleProps> = ({
           particles.push({
             baseX: x,
             baseY: y,
-            x: x,
-            y: y,
+            // SCATTER START: Randomize starting position outside the canvas bounds
+            x: width / 2 + (Math.random() - 0.5) * (width * 3),
+            y: height / 2 + (Math.random() - 0.5) * (height * 3),
             char: ASCII_CHARS[charIndex],
+            // ENTRANCE ANIMATION VARS:
+            opacity: 0,
+            delay: Math.random() * 80 // Stagger their entry over ~80 frames
           });
         }
       }
@@ -118,36 +114,53 @@ export const AsciiRepel: React.FC<AsciiWiggleProps> = ({
 
       const animate = () => {
         ctx.clearRect(0, 0, width, height);
-
-        // 3. Apply the dynamic color from the ref right before drawing!
         ctx.fillStyle = themeColorRef.current;
+        frameCount++;
 
         for (let i = 0; i < particles.length; i++) {
           const p = particles[i];
 
-          if (mouse.isActive) {
-            const dx = mouse.x - p.x;
-            const dy = mouse.y - p.y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-
-            if (distance < repelRadius) {
-              const force = (repelRadius - distance) / repelRadius;
-              const angle = Math.atan2(dy, dx);
-              
-              const pushX = Math.cos(angle) * force * 15; 
-              const pushY = Math.sin(angle) * force * 15;
-
-              p.x -= pushX;
-              p.y -= pushY;
+          // Wait until this specific particle's delay is over before animating it
+          if (frameCount > p.delay) {
+            
+            // Fade in
+            if (p.opacity < 1) {
+              p.opacity += 0.03;
+              if (p.opacity > 1) p.opacity = 1;
             }
+
+            // Repel logic (Only starts happening once the particle is active)
+            if (mouse.isActive) {
+              const dx = mouse.x - p.x;
+              const dy = mouse.y - p.y;
+              const distance = Math.sqrt(dx * dx + dy * dy);
+
+              if (distance < repelRadius) {
+                const force = (repelRadius - distance) / repelRadius;
+                const angle = Math.atan2(dy, dx);
+                
+                const pushX = Math.cos(angle) * force * 15; 
+                const pushY = Math.sin(angle) * force * 15;
+
+                p.x -= pushX;
+                p.y -= pushY;
+              }
+            }
+
+            // Spring physics: pulling them toward their correct destination
+            p.x += (p.baseX - p.x) * 0.08; 
+            p.y += (p.baseY - p.y) * 0.08;
           }
 
-          p.x += (p.baseX - p.x) * 0.1; 
-          p.y += (p.baseY - p.y) * 0.1;
-
-          ctx.fillText(p.char, p.x, p.y);
+          // Optimization: Don't bother drawing it if it's still completely invisible
+          if (p.opacity > 0) {
+            ctx.globalAlpha = p.opacity;
+            ctx.fillText(p.char, p.x, p.y);
+          }
         }
 
+        // Reset global alpha so we don't accidentally fade the whole canvas context
+        ctx.globalAlpha = 1;
         animationFrameId = requestAnimationFrame(animate);
       };
 
@@ -156,9 +169,9 @@ export const AsciiRepel: React.FC<AsciiWiggleProps> = ({
 
     return () => {
       canvas.removeEventListener('mousemove', handleMouseMove);
+      canvas.removeEventListener('mouseenter', handleMouseEnter);
       canvas.removeEventListener('mouseleave', handleMouseLeave);
       cancelAnimationFrame(animationFrameId);
-      // Disconnect the observer when the component unmounts
       observer.disconnect(); 
     };
   }, [src, width, height, resolution, repelRadius]);

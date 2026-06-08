@@ -41,7 +41,7 @@ function App() {
       </div>
 
       {/* THE MASTER CONTAINER */}
-      <div className="max-w-6xl mx-auto px-6 md:px-12 pt-24 flex flex-col gap-12 md:gap-24 w-full flex-1">
+      <div className="max-w-6xl mx-auto px-6 md:px-12 pt-24 flex flex-col gap-6 md:gap-0 w-full flex-1">
         <Home />
         <About />
         <Experience />
