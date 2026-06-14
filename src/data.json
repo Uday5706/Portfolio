@@ -236,6 +236,17 @@
         "external": ""
       },
       {
+        "title": "Portfolio",
+        "description": "A Easy to Edit , Json based portfolio.",
+        "techStack": [
+          "React",
+          "Frame motion",
+          "Tailwind"
+        ],
+        "github": "https://github.com/Uday5706/portfolio",
+        "external": "https://uday5706.netlify.app"
+      },
+      {
         "title": "Surat Sparkle Storefront",
         "description": "A digital storefront and comprehensive branding identity for a jewelry company, including modular UI for their 10+1 monthly subscription plan.",
         "techStack": [
