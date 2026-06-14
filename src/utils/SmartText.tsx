@@ -27,7 +27,7 @@ export const SmartText = ({
         // Added whitespace-pre-wrap to ensure HTML doesn't collapse spaces between spans
         let classNames = "whitespace-pre-wrap "; 
         if (isBold) classNames += "font-bold text-main ";
-        if (isHighlight) classNames += "text-mint ";
+        if (isHighlight) classNames += "font-semibold text-mint ";
 
         return classNames.trim() !== "whitespace-pre-wrap" ? (
           <span key={index} className={classNames.trim()}>{part}</span>

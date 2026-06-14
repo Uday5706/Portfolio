@@ -87,7 +87,7 @@ export default function Builds() {
           viewport={{ once: true, amount: 0.2 }}
           className="mb-16 relative hidden sm:block"
         >
-          <div className="relative w-full aspect-video rounded-xl overflow-hidden group">
+          <div className="relative w-full md:w-[90%] mx-auto aspect-video rounded-xl overflow-hidden group">
             
             <div 
               className="flex w-full h-full transition-transform duration-500 ease-in-out"
@@ -101,7 +101,7 @@ export default function Builds() {
                     className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
                     style={{ backgroundImage: `url(${project.imagePath})` }}
                   >
-                    <div className="absolute inset-0 bg-navy-light/90 transition-colors duration-500"></div>
+                    <div className="absolute inset-0 bg-navy-light/80 transition-colors duration-500"></div>
                   </div>
 
                   {/* Slide Content */}
@@ -240,7 +240,7 @@ export default function Builds() {
                 <img 
                   src={project.imagePath} 
                   alt={project.title} 
-                  className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-300 mix-blend-screen" 
+                  className="w-full h-full object-cover opacity-70  transition-opacity duration-300 " 
                 />
               </div>
             )}

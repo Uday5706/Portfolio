@@ -42,7 +42,8 @@ const getIcon = (type: string, isActive: boolean) => {
 };
 
 export default function Achievements() {
-  const { heading, items, linkedin } = data.achievements;
+  const { heading, items } = data.achievements;
+  const linkedin = data.navbar.socials.linkedin;
   const [expandedIndex, setExpandedIndex] = useState<number>(0);
 
   return (
@@ -70,7 +71,7 @@ export default function Achievements() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
-        className="w-full max-w-6xl mx-auto h-auto md:h-[500px] flex flex-col md:flex-row gap-3 md:gap-4"
+        className="w-full max-w-6xl mx-auto h-auto md:h-[450px] flex flex-col md:flex-row gap-3 md:gap-4"
       >
         {items.map((item: any, index: number) => {
           const isActive = index === expandedIndex;
@@ -140,20 +141,20 @@ export default function Achievements() {
                   </div>
 
                   {/* Desktop Category Badge */}
-                  <div className="hidden md:block mb-auto">
+                  <div className="hidden md:block">
                     <span className="inline-block px-3 py-1 bg-mint/10 border border-mint/20 text-mint font-mono text-xs rounded-full tracking-wide uppercase mb-4">
                       {item.category}
                     </span>
                   </div>
 
                   <div className="max-w-xl w-full">
-                    <h3 className="text-2xl md:text-5xl font-bold text-text-main leading-tight mb-2 md:mb-3 tracking-tight">
+                    <h3 className="text-2xl md:text-4xl font-bold text-text-main leading-tight mb-2 md:mb-3 tracking-tight">
                       {item.title}
                     </h3>
                     <p className="text-mint font-mono text-xs md:text-sm uppercase tracking-widest mb-4 md:mb-6 truncate">
                       {item.context}
                     </p>
-                    <p className="text-text-muted text-sm md:text-lg leading-relaxed mb-6 md:mb-8">
+                    <p className="text-text-muted text-sm md:text-lg font-medium leading-relaxed mb-6 md:mb-8">
                       {item.description}
                     </p>
 

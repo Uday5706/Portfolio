@@ -40,8 +40,7 @@
     },
     "content": {
       "heading": "hi, uday here..",
-      "description": "Student at Delhi Technological University. I build systems that solves problems and make strange little projects at the intersection of tech and art by night. Occasionally both happen at the same time.",
-      "buttonText": "Say hi!"
+      "description": "Student at Delhi Technological University. I build systems that solves problems and make strange little projects at the intersection of tech and art by night. Occasionally both happen at the same time."
     },
     "formatting": {
       "boldWords": [
@@ -134,7 +133,7 @@
         "items": [
           "Node.js",
           "Firebase",
-          "AWS",
+          "MongoDB",
           "REST APIs",
           "SQL"
         ]
@@ -146,9 +145,8 @@
         "items": [
           "Git",
           "GitHub Actions",
-          "Docker",
           "Postman",
-          "Agile"
+          "Google App Scripts"
         ]
       }
     ]
@@ -238,17 +236,6 @@
         "external": ""
       },
       {
-        "title": "IoT Smart Recycling Bin",
-        "description": "An automated smart bin system modeled using pushdown automaton and state transition diagrams to theoretically optimize waste management logic.",
-        "techStack": [
-          "Automata Theory",
-          "C++",
-          "IoT"
-        ],
-        "github": "https://github.com/yourusername/smart-bin",
-        "external": ""
-      },
-      {
         "title": "Surat Sparkle Storefront",
         "description": "A digital storefront and comprehensive branding identity for a jewelry company, including modular UI for their 10+1 monthly subscription plan.",
         "techStack": [
@@ -280,14 +267,13 @@
   },
   "achievements": {
     "heading": "/ achievements",
-    "linkedin": "https://linkedin.com/in/yourprofile",
     "items": [
       {
         "id": "01",
         "category": "Algorithm Mastery",
         "title": "400+ DSA Problems Solved",
         "context": "LeetCode • C++",
-        "description": "Consistently crushing complex algorithmic problems. Deep focus on dynamic programming, graph theory, and advanced tree structures to push time and space complexities to their absolute limits.",
+        "description": "Consistently crushing complex algorithmic problems.",
         "icon": "code",
         "link": "https://leetcode.com"
       },

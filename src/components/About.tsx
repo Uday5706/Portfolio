@@ -1,6 +1,7 @@
 import { motion, type Variants } from 'framer-motion';
 import { MapPin, GraduationCap, Code2, Download, Terminal } from 'lucide-react';
 import data from '../data.json';
+import { SmartText } from '../utils/SmartText'; // Ensure the path matches your folder structure
 
 const sectionVariants: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -28,32 +29,6 @@ const getIcon = (iconName: string) => {
     case 'code': return <Code2 className={className} />;
     default: return <Terminal className={className} />;
   }
-};
-
-// HELPER: Escapes special characters (like the ++ in C++) so Regex doesn't crash
-const escapeRegExp = (string: string) => {
-  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-};
-
-// TEXT PARSER: Scans the paragraph and applies HTML styling to matched words
-const formatText = (text: string, boldWords: string[], highlightedWords: string[]) => {
-  let formattedText = text;
-  
-  // Highlighted Words get the mint color
-  highlightedWords.forEach(word => {
-    const escapedWord = escapeRegExp(word);
-    const regex = new RegExp(`(${escapedWord})`, 'gi');
-    formattedText = formattedText.replace(regex, '<span class="text-mint font-medium">$1</span>');
-  });
-
-  // Bold words get a bright white color and bold weight
-  boldWords.forEach(word => {
-    const escapedWord = escapeRegExp(word);
-    const regex = new RegExp(`(${escapedWord})`, 'gi');
-    formattedText = formattedText.replace(regex, '<strong class="text-text-main font-bold">$1</strong>');
-  });
-
-  return <span dangerouslySetInnerHTML={{ __html: formattedText }} />;
 };
 
 export default function About() {
@@ -92,8 +67,12 @@ export default function About() {
               variants={childVariants}
               className="text-text-muted text-base md:text-lg leading-relaxed font-medium"
             >
-              {/* Apply the formatter to each paragraph */}
-              {formatText(text, formatting.boldWords, formatting.highlightedWords)}
+              {/* Using the centralized SmartText component */}
+              <SmartText 
+                text={text} 
+                boldWords={formatting.boldWords} 
+                highlightedWords={formatting.highlightedWords} 
+              />
             </motion.p>
           ))}
         </div>
