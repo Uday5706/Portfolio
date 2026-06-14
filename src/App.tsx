@@ -3,7 +3,9 @@ import Home from './components/Home';
 import About from './components/About';
 import Experience from './components/Experience';
 import Builds from './components/Builds';
+import Skills from './components/Skills';
 import Footer from './components/Footer';
+import Achievements from './components/Achievements';
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -44,8 +46,10 @@ function App() {
       <div className="max-w-6xl mx-auto px-6 md:px-12 pt-24 flex flex-col gap-6 md:gap-0 w-full flex-1">
         <Home />
         <About />
+        <Skills />
         <Experience />
         <Builds />
+        <Achievements />
         <Footer />
       </div>
 

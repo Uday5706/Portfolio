@@ -15,7 +15,7 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="w-full border border-b-2 border-text-main/30 px-6 flex justify-between items-center py-6 relative">
+    <nav className="w-full border border-0 border-b-2 border-text-main/30 px-6 flex justify-between items-center py-6 relative">
       
       {/* LEFT SIDE: Hamburger + Logo + Desktop Links */}
       <div className="flex items-center gap-4 md:gap-8 relative">
@@ -71,10 +71,33 @@ export default function Navbar() {
       
       {/* RIGHT SIDE: Socials */}
       <div className="flex gap-4 md:gap-5 text-text-muted z-50 relative">
-        <a href={socials.email} className="hover:text-mint transition-colors"><Mail className="w-5 h-5" /></a>
-        <a href={socials.github} target="_blank" rel="noopener noreferrer" className="hover:text-mint transition-colors"><GithubIcon /></a>
-        <a href={socials.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-mint transition-colors"><LinkedinIcon /></a>
-        <a href={socials.blog} target="_blank" rel="noopener noreferrer" className="hover:text-mint transition-colors hidden sm:block"><PenTool className="w-5 h-5" /></a>
+        {/* Only renders if socials.email is not empty */}
+        {socials.email && (
+          <a href={socials.email} className="hover:text-mint transition-colors">
+            <Mail className="w-5 h-5" />
+          </a>
+        )}
+
+        {/* Only renders if socials.github is not empty */}
+        {socials.github && (
+          <a href={socials.github} target="_blank" rel="noopener noreferrer" className="hover:text-mint transition-colors">
+            <GithubIcon />
+          </a>
+        )}
+
+        {/* Only renders if socials.linkedin is not empty */}
+        {socials.linkedin && (
+          <a href={socials.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-mint transition-colors">
+            <LinkedinIcon />
+          </a>
+        )}
+
+        {/* Only renders if socials.blog is not empty */}
+        {socials.blog && (
+          <a href={socials.blog} target="_blank" rel="noopener noreferrer" className="hover:text-mint transition-colors hidden sm:block">
+            <PenTool className="w-5 h-5" />
+          </a>
+        )}
       </div>
 
     </nav>

@@ -1,124 +1,146 @@
-import { motion,type Variants } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
+import { MapPin, GraduationCap, Code2, Download, Terminal } from 'lucide-react';
 import data from '../data.json';
-import { SmartText } from '../utils/SmartText';
 
-// --- FRAMER MOTION VARIANTS ---
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.2, delayChildren: 0.1 },
-  },
+const sectionVariants: Variants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.7, ease: "easeOut", staggerChildren: 0.2 } 
+  }
 };
 
-const textVariants : Variants = {
-  hidden: { opacity: 0, y: 30 },
+const childVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
   visible: { 
-    opacity: 1, y: 0, 
-    transition: { duration: 0.6, ease: "easeOut" } 
-  },
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.5, ease: "easeOut" } 
+  }
 };
 
-const imageVariants: Variants = {
-  hidden: { opacity: 0, scale: 0.85, rotate: -4 },
-  visible: { 
-    opacity: 1, scale: 1, rotate: 0, 
-    transition: { duration: 0.8, ease: [0.25, 1, 0.5, 1] } 
-  },
+const getIcon = (iconName: string) => {
+  const className = "w-5 h-5 text-mint";
+  switch (iconName) {
+    case 'map': return <MapPin className={className} />;
+    case 'graduation': return <GraduationCap className={className} />;
+    case 'code': return <Code2 className={className} />;
+    default: return <Terminal className={className} />;
+  }
+};
+
+// HELPER: Escapes special characters (like the ++ in C++) so Regex doesn't crash
+const escapeRegExp = (string: string) => {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+};
+
+// TEXT PARSER: Scans the paragraph and applies HTML styling to matched words
+const formatText = (text: string, boldWords: string[], highlightedWords: string[]) => {
+  let formattedText = text;
+  
+  // Highlighted Words get the mint color
+  highlightedWords.forEach(word => {
+    const escapedWord = escapeRegExp(word);
+    const regex = new RegExp(`(${escapedWord})`, 'gi');
+    formattedText = formattedText.replace(regex, '<span class="text-mint font-medium">$1</span>');
+  });
+
+  // Bold words get a bright white color and bold weight
+  boldWords.forEach(word => {
+    const escapedWord = escapeRegExp(word);
+    const regex = new RegExp(`(${escapedWord})`, 'gi');
+    formattedText = formattedText.replace(regex, '<strong class="text-text-main font-bold">$1</strong>');
+  });
+
+  return <span dangerouslySetInnerHTML={{ __html: formattedText }} />;
 };
 
 export default function About() {
-  const { heading, description, skills, formatting, layout, imagePath } = data.about;
-
-  const layoutDirection = layout.imagePosition === 'left' ? 'md:flex-row-reverse' : 'md:flex-row';
-  const marqueeSkills = skills ? [...skills, ...skills] : [];
+  const { heading, paragraphs, quickFacts, resumeUrl, formatting } = data.about;
 
   return (
-    <section id="about" className="max-w-7xl w-full py-32 flex flex-col justify-center overflow-hidden">
+    <section id="about" className="py-20 w-full min-w-0">
       
-      {/* The Split Container - Animated with whileInView */}
+      {/* HEADER */}
       <motion.div 
-        variants={containerVariants}
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.5 }}
+        className="flex items-center mb-12"
+      >
+        <h2 className="text-3xl md:text-4xl text-text-main font-semibold font-poppins whitespace-nowrap">
+          {heading}
+        </h2>
+        <div className="ml-6 h-[1px] w-full max-w-xs bg-text-muted/30"></div>
+      </motion.div>
+
+      <motion.div 
+        variants={sectionVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
-        className={`flex flex-col ${layoutDirection} gap-16 items-center`}
+        className="flex flex-col lg:flex-row gap-12 lg:gap-16 max-w-6xl mx-auto"
       >
         
-        {/* TEXT & SKILLS COLUMN */}
-        <div className={`w-full ${imagePath && layout.imagePosition !== 'none' ? 'md:w-3/5' : ''}`}>
-          
-          <motion.div variants={textVariants} className="mb-8 flex items-center w-full">
-            <h2 className="text-3xl md:text-4xl text-text-main font-semibold font-poppins whitespace-nowrap transition-colors duration-500">
-              {heading}
-            </h2>
-            <div className="ml-6 h-[1px] flex-1 max-w-sm bg-text-muted/30 transition-colors duration-500"></div>
-          </motion.div>
-          
-          <motion.div variants={textVariants}>
-            <p className="text-xl font-medium leading-relaxed text-text-muted mb-12 max-w-2xl transition-colors duration-500">
-              <SmartText 
-                text={description} 
-                boldWords={formatting?.boldWords || []} 
-                highlightedWords={formatting?.highlightedWords || []} 
-              />
-            </p>
-          </motion.div>
-
-          {/* PILL LAYOUT (with staggered pop-in animation) */}
-          {layout.skillsDisplay === 'pill' && (
-            <motion.div variants={textVariants} className="flex flex-wrap gap-3 md:gap-4">
-              {skills?.map((skill: string, index: number) => (
-                <motion.span 
-                  key={`${skill}-${index}`}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: index * 0.05, type: "spring", stiffness: 150 }}
-                  viewport={{ once: true }}
-                  className="px-4 py-2 md:px-6 md:py-3 border border-mint text-mint rounded-lg text-sm md:text-lg font-mono hover:bg-mint hover:text-navy transition-colors duration-300 cursor-default"
-                >
-                  {skill}
-                </motion.span>
-              ))}
-            </motion.div>
-          )}
-
-          {/* AUTO-SCROLL CAROUSEL LAYOUT (with fade-in animation) */}
-          {layout.skillsDisplay === 'carousel' && (
-            <motion.div variants={textVariants} className="w-full overflow-hidden relative pt-2">
-              <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-navy to-transparent z-10 pointer-events-none transition-colors duration-500"></div>
-              <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-navy to-transparent z-10 pointer-events-none transition-colors duration-500"></div>
-              
-              <div className="flex w-max animate-marquee hover:pause cursor-grab active:cursor-grabbing">
-                {marqueeSkills.map((skill: string, idx: number) => (
-                  <span
-                    key={`${skill}-${idx}`}
-                    className="px-8 py-3 mx-2 border border-text-muted/30 bg-navy text-mint rounded-lg text-md font-mono whitespace-nowrap hover:border-mint transition-colors duration-500"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          )}
+        {/* LEFT COLUMN: The Narrative */}
+        <div className="w-full lg:w-3/5 flex flex-col gap-6">
+          {paragraphs.map((text: string, index: number) => (
+            <motion.p 
+              key={index}
+              variants={childVariants}
+              className="text-text-muted text-base md:text-lg leading-relaxed font-medium"
+            >
+              {/* Apply the formatter to each paragraph */}
+              {formatText(text, formatting.boldWords, formatting.highlightedWords)}
+            </motion.p>
+          ))}
         </div>
 
-        {/* IMAGE COLUMN */}
-        {imagePath && layout.imagePosition !== 'none' && (
-          <motion.div variants={imageVariants} className="hidden md:block w-full md:w-2/5 flex justify-center">
-            <div className="relative group max-w-sm w-[75%]">
-              <div className="absolute inset-0 border-2 border-mint rounded-lg translate-x-4 translate-y-4 transition-all duration-500 group-hover:translate-x-2 group-hover:translate-y-2"></div>
-              
-              <img 
-                src={imagePath} 
-                alt="Profile" 
-                className="relative z-10 rounded-lg w-full object-cover aspect-[4/5] transition-all duration-500"
-              />
-              
-              <div className="absolute inset-0 bg-mint/20 mix-blend-multiply z-20 rounded-lg opacity-100 group-hover:opacity-0 transition-all duration-500"></div>
+        {/* RIGHT COLUMN: Executive Summary & Resume */}
+        <motion.div 
+          variants={childVariants}
+          className="w-full lg:w-2/5 flex flex-col gap-6"
+        >
+          {/* Quick Facts Bento Box */}
+          <div className="bg-navy-light rounded-2xl p-6 md:p-8 border border-text-muted/10 shadow-xl shadow-navy-light/10">
+            <h3 className="font-mono text-text-main text-sm uppercase tracking-widest mb-6">
+              Executive Summary
+            </h3>
+            
+            <div className="flex flex-col gap-5">
+              {quickFacts.map((fact: any, index: number) => (
+                <div key={index} className="flex items-center gap-4">
+                  <div className="p-3 bg-mint/10 rounded-xl">
+                    {getIcon(fact.icon)}
+                  </div>
+                  <div>
+                    <p className="text-xs font-mono text-text-muted/60 uppercase tracking-wider mb-0.5">
+                      {fact.label}
+                    </p>
+                    <p className="text-sm md:text-base font-bold text-text-main">
+                      {fact.value}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
-          </motion.div>
-        )}
+          </div>
+
+          {/* Resume Download Action */}
+          {resumeUrl && (
+            <a 
+              href={resumeUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center justify-center gap-3 w-full py-4 bg-transparent border border-mint/50 hover:bg-mint/10 text-mint rounded-xl font-mono text-sm transition-all duration-300 active:scale-[0.98] group"
+            >
+              <Download className="w-5 h-5 group-hover:-translate-y-1 transition-transform" />
+              Download Full Resume
+            </a>
+          )}
+        </motion.div>
 
       </motion.div>
     </section>

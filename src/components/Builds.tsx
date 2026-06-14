@@ -57,7 +57,7 @@ export default function Builds() {
   const prevSlide = () => setCurrentSlide((prev) => (prev === 0 ? featuredProjects.length - 1 : prev - 1));
 
   return (
-    <section id="builds" className="py-12 md:px-12 flex flex-col justify-center w-full min-w-0">
+    <section id="builds" className="pb-20 pt-6 md:px-12 flex flex-col justify-center w-full min-w-0">
       
       {/* HEADER (Animated on scroll) */}
       <motion.div 

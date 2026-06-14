@@ -17,7 +17,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 6rem;
+    scroll-padding-top: 3rem;
   }
 
   /* DEFAULT THEME (Dark Navy / Hacker) */
@@ -112,4 +112,28 @@ body {
   75% {
     transform: translate(-3px, -1px) scale(1.05);
   }
+}
+
+::-webkit-scrollbar {
+  width: 10px; /* Slimmer, elegant width */
+  height: 10px; /* For horizontal scrollbars */
+}
+
+/* The tracking background layer */
+::-webkit-scrollbar-track {
+  background: var(--bg-base); /* Dynamically blends with your theme background */
+}
+
+/* The actual draggable thumb handle */
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted); /* Soft gray in Navy mode / brown in Sand mode */
+  border-radius: 100px;
+  /* Trick: Padding effect using borders to give the handle breathing room */
+  border: 3px solid var(--bg-base); 
+  transition: background-color 0.3s ease;
+}
+
+/* Smooth interactive state when dragging the thumb */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent); /* Glows with your signature Mint or Burnt Orange! */
 }

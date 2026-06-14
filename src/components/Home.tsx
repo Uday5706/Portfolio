@@ -123,15 +123,18 @@ export default function Home() {
             <SmartText text={content.description} boldWords={formatting.boldWords} highlightedWords={formatting.highlightedWords} />
           </motion.p>
 
-          <motion.button 
+          <motion.a 
+            href={data.navbar.socials.email} // Pulls your LinkedIn URL dynamically
+            target="_blank"
+            rel="noreferrer"
             variants={textChildVariants}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="flex items-center gap-3 px-6 py-4 border border-mint text-mint font-mono text-sm hover:bg-mint/10 rounded transition-all duration-500"
+            className="flex items-center w-fit gap-3 px-8 py-4 border border-mint text-mint font-mono text-sm hover:bg-mint/10 rounded transition-all duration-500 cursor-pointer"
           >
             <Mail className="w-4 h-4" />
-            {content.buttonText}
-          </motion.button>
+            Say Hi
+          </motion.a>
         </motion.div>
 
       </motion.div>

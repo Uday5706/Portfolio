@@ -40,11 +40,10 @@ export const AsciiRepel: React.FC<AsciiWiggleProps> = ({
 
     let particles: any[] = [];
     let animationFrameId: number;
-    let frameCount = 0; // Used to stagger the entrance animation
+    let frameCount = 0; 
     
     let mouse = { x: -1000, y: -1000, isActive: false };
 
-    // --- ENHANCED MOUSE EVENTS ---
     const handleMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
       mouse.x = e.clientX - rect.left;
@@ -63,14 +62,14 @@ export const AsciiRepel: React.FC<AsciiWiggleProps> = ({
     };
 
     canvas.addEventListener('mousemove', handleMouseMove);
-    canvas.addEventListener('mouseenter', handleMouseEnter); // Fixes the reload bug!
+    canvas.addEventListener('mouseenter', handleMouseEnter); 
     canvas.addEventListener('mouseleave', handleMouseLeave);
 
     const img = new Image();
     img.crossOrigin = 'Anonymous';
-    img.src = src;
 
-    img.onload = () => {
+    // THE SYSTEM FIX: Encapsulated initialization logic so it can run safely anywhere
+    const initCanvasWithImage = () => {
       const offscreen = document.createElement('canvas');
       offscreen.width = width;
       offscreen.height = height;
@@ -97,13 +96,11 @@ export const AsciiRepel: React.FC<AsciiWiggleProps> = ({
           particles.push({
             baseX: x,
             baseY: y,
-            // SCATTER START: Randomize starting position outside the canvas bounds
             x: width / 2 + (Math.random() - 0.5) * (width * 3),
             y: height / 2 + (Math.random() - 0.5) * (height * 3),
             char: ASCII_CHARS[charIndex],
-            // ENTRANCE ANIMATION VARS:
             opacity: 0,
-            delay: Math.random() * 80 // Stagger their entry over ~80 frames
+            delay: Math.random() * 80 
           });
         }
       }
@@ -120,16 +117,12 @@ export const AsciiRepel: React.FC<AsciiWiggleProps> = ({
         for (let i = 0; i < particles.length; i++) {
           const p = particles[i];
 
-          // Wait until this specific particle's delay is over before animating it
           if (frameCount > p.delay) {
-            
-            // Fade in
             if (p.opacity < 1) {
               p.opacity += 0.03;
               if (p.opacity > 1) p.opacity = 1;
             }
 
-            // Repel logic (Only starts happening once the particle is active)
             if (mouse.isActive) {
               const dx = mouse.x - p.x;
               const dy = mouse.y - p.y;
@@ -147,25 +140,35 @@ export const AsciiRepel: React.FC<AsciiWiggleProps> = ({
               }
             }
 
-            // Spring physics: pulling them toward their correct destination
             p.x += (p.baseX - p.x) * 0.08; 
             p.y += (p.baseY - p.y) * 0.08;
           }
 
-          // Optimization: Don't bother drawing it if it's still completely invisible
           if (p.opacity > 0) {
             ctx.globalAlpha = p.opacity;
             ctx.fillText(p.char, p.x, p.y);
           }
         }
 
-        // Reset global alpha so we don't accidentally fade the whole canvas context
         ctx.globalAlpha = 1;
         animationFrameId = requestAnimationFrame(animate);
       };
 
       animate();
     };
+
+    // THE CRITICAL FIX ORDER:
+    // 1. Assign the listener FIRST so it is bound before evaluation starts.
+    img.onload = initCanvasWithImage;
+
+    // 2. Assign the source NEXT to begin evaluation.
+    img.src = src;
+
+    // 3. CACHE GUARD: If the browser instantly loaded the asset from memory cache 
+    // before the async engine completed, manually trigger the initialization.
+    if (img.complete && img.naturalWidth !== 0) {
+      initCanvasWithImage();
+    }
 
     return () => {
       canvas.removeEventListener('mousemove', handleMouseMove);

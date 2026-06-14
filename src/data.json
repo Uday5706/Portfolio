@@ -5,14 +5,34 @@
       "email": "mailto:udaykumar5706@gmail.com",
       "github": "https://github.com/Uday5706",
       "linkedin": "https://www.linkedin.com/in/uday-kumar-25a6aa323/",
-      "blog": "https://yourblog.com" 
+      "blog": ""
     }
   },
   "sections": [
-    { "id": "home", "title": "Home" },
-    { "id": "about", "title": "About" },
-    { "id": "experience", "title": "Experience" },
-    { "id": "builds", "title": "Builds" }
+    {
+      "id": "home",
+      "title": "Home"
+    },
+    {
+      "id": "about",
+      "title": "About"
+    },
+    {
+      "id": "skills",
+      "title": "Tech stack"
+    },
+    {
+      "id": "experience",
+      "title": "Experience"
+    },
+    {
+      "id": "builds",
+      "title": "Builds"
+    },
+    {
+      "id": "achievements",
+      "title": "Achievements"
+    }
   ],
   "hero": {
     "layout": {
@@ -20,27 +40,118 @@
     },
     "content": {
       "heading": "hi, uday here..",
-      "description": "Software engineer and student at Delhi Technological University. I build logistics systems by day and make strange little projects at the intersection of tech and art by night. Occasionally both happen at the same time.",
+      "description": "Student at Delhi Technological University. I build systems that solves problems and make strange little projects at the intersection of tech and art by night. Occasionally both happen at the same time.",
       "buttonText": "Say hi!"
     },
     "formatting": {
-      "boldWords": ["strange little projects", "Delhi Technological University"],
-      "highlightedWords": ["uday", "logistics systems"]
+      "boldWords": [
+        "strange little projects",
+        "Delhi Technological University"
+      ],
+      "highlightedWords": [
+        "uday",
+        "logistics systems"
+      ]
     }
   },
   "about": {
-    "layout": {
-      "skillsDisplay": "pill",
-      "imagePosition": "right" 
-    },
-    "imagePath": "/uday-profile.jpg",
     "heading": "/ about me",
-    "description": "I am an engineering student focused on computer science and software development. I enjoy building things from scratch, whether that means engineering a logistics tracker or designing an interactive UI layout.",
-    "skills": ["React.js", "Flutter", "C++", "JavaScript", "Dart", "Node.js", "Firebase", "MongoDB", "NextJS","Tailwind CSS","ML","Flutter"],
+    "paragraphs": [
+      "Hello! I'm Uday, a B.Tech student at Delhi Technological University with a deep passion for computer science and software development.",
+      "I enjoy building things from scratch, whether that means engineering a real-time logistics tracker, designing an interactive UI, or pushing my limits in 36-hour hackathons.",
+      "Currently, my focus is on mastering full-stack platforms and mobile experiences using React and Flutter, while consistently crushing algorithmic puzzles in C++."
+    ],
+    "quickFacts": [
+      {
+        "label": "Location",
+        "value": "Delhi, India",
+        "icon": "map"
+      },
+      {
+        "label": "Education",
+        "value": "Delhi Tech University",
+        "icon": "graduation"
+      },
+      {
+        "label": "Degree",
+        "value": "B.Tech in CSE",
+        "icon": "code"
+      }
+    ],
+    "resumeUrl": "/Resume.pdf",
     "formatting": {
-      "boldWords": ["engineering student", "building things from scratch"],
-      "highlightedWords": ["computer science", "software development"]
+      "boldWords": [
+        "B.Tech student",
+        "building things from scratch",
+        "36-hour hackathons"
+      ],
+      "highlightedWords": [
+        "computer science",
+        "software development",
+        "React",
+        "Flutter",
+        "C++"
+      ]
     }
+  },
+  "skills": {
+    "heading": "/ Tech stack",
+    "terminal": {
+      "user": "uday",
+      "host": "dev",
+      "directory": "~/stack",
+      "command": "npx list-skills --interactive"
+    },
+    "categories": [
+      {
+        "id": "languages",
+        "label": "Languages",
+        "icon": "code",
+        "items": [
+          "C++",
+          "JavaScript",
+          "TypeScript",
+          "Dart",
+          "HTML/CSS"
+        ]
+      },
+      {
+        "id": "frontend",
+        "label": "Frontend & Mobile",
+        "icon": "layout",
+        "items": [
+          "React",
+          "Flutter",
+          "Tailwind CSS",
+          "Framer Motion",
+          "Next.js"
+        ]
+      },
+      {
+        "id": "backend",
+        "label": "Backend & Cloud",
+        "icon": "database",
+        "items": [
+          "Node.js",
+          "Firebase",
+          "AWS",
+          "REST APIs",
+          "SQL"
+        ]
+      },
+      {
+        "id": "tools",
+        "label": "Architecture & Tools",
+        "icon": "wrench",
+        "items": [
+          "Git",
+          "GitHub Actions",
+          "Docker",
+          "Postman",
+          "Agile"
+        ]
+      }
+    ]
   },
   "experience": {
     "heading": "/ experience",
@@ -75,18 +186,29 @@
       }
     ],
     "formatting": {
-      "boldWords": ["36-hour hackathon", "30-hour mentorship journey", "scalable software architecture"],
-      "highlightedWords": ["Delhi Technological University", "Community Engagement"]
+      "boldWords": [
+        "36-hour hackathon",
+        "30-hour mentorship journey",
+        "scalable software architecture"
+      ],
+      "highlightedWords": [
+        "Delhi Technological University",
+        "Community Engagement"
+      ]
     }
   },
   "builds": {
     "heading": "/ builds",
-    "viewAllText": "View all builds →",
     "projects": [
       {
         "title": "Rayride",
         "description": "A comprehensive logistics and tracking system featuring real-time map polylines and socket service integration for live driver location tracking.",
-        "techStack": ["React", "Socket.io", "Maps API", "Node.js"],
+        "techStack": [
+          "React",
+          "Socket.io",
+          "Maps API",
+          "Node.js"
+        ],
         "github": "https://github.com/yourusername/rayride",
         "external": "https://rayride.com",
         "imagePath": "/rayride-bg.png"
@@ -94,7 +216,12 @@
       {
         "title": "Spotify-Web App",
         "description": "A web-based clone of the Spotify application, handling audio streaming states and dynamic CSS UI components.",
-        "techStack": ["React", "Firebase", "Vite", "CSS"],
+        "techStack": [
+          "React",
+          "Firebase",
+          "Vite",
+          "CSS"
+        ],
         "github": "https://github.com/yourusername/spotify-clone",
         "external": "https://spotify-clone.com",
         "imagePath": "/spotify-bg.png"
@@ -102,33 +229,95 @@
       {
         "title": "Budgit",
         "description": "A mobile application designed for intuitive food budgeting and expense tracking. Features a custom-built budget controller logic and sleek UI.",
-        "techStack": ["Flutter", "Dart", "Provider"],
+        "techStack": [
+          "Flutter",
+          "Dart",
+          "Provider"
+        ],
         "github": "https://github.com/yourusername/budgit",
         "external": ""
       },
       {
         "title": "IoT Smart Recycling Bin",
         "description": "An automated smart bin system modeled using pushdown automaton and state transition diagrams to theoretically optimize waste management logic.",
-        "techStack": ["Automata Theory", "C++", "IoT"],
+        "techStack": [
+          "Automata Theory",
+          "C++",
+          "IoT"
+        ],
         "github": "https://github.com/yourusername/smart-bin",
         "external": ""
       },
       {
         "title": "Surat Sparkle Storefront",
         "description": "A digital storefront and comprehensive branding identity for a jewelry company, including modular UI for their 10+1 monthly subscription plan.",
-        "techStack": ["UI/UX", "React", "Tailwind CSS"],
+        "techStack": [
+          "UI/UX",
+          "React",
+          "Tailwind CSS"
+        ],
         "github": "",
         "external": "https://suratsparkle.com"
       }
     ],
     "formatting": {
-      "boldWords": ["real-time map polylines", "socket service integration", "pushdown automaton", "budget controller logic"],
-      "highlightedWords": ["Rayride", "Budgit", "Spotify"]
+      "boldWords": [
+        "real-time map polylines",
+        "socket service integration",
+        "pushdown automaton",
+        "budget controller logic"
+      ],
+      "highlightedWords": [
+        "Rayride",
+        "Budgit",
+        "Spotify"
+      ]
     }
-  
   },
   "footer": {
     "text": "Designed & Built by Uday",
     "copyright": "© 2026 All Rights Reserved."
+  },
+  "achievements": {
+    "heading": "/ achievements",
+    "linkedin": "https://linkedin.com/in/yourprofile",
+    "items": [
+      {
+        "id": "01",
+        "category": "Algorithm Mastery",
+        "title": "400+ DSA Problems Solved",
+        "context": "LeetCode • C++",
+        "description": "Consistently crushing complex algorithmic problems. Deep focus on dynamic programming, graph theory, and advanced tree structures to push time and space complexities to their absolute limits.",
+        "icon": "code",
+        "link": "https://leetcode.com"
+      },
+      {
+        "id": "02",
+        "category": "Hackathon Sprint",
+        "title": "brAInwave 2.0 Winner",
+        "context": "36-Hour Competitive Sprint",
+        "description": "Engineered a real-time smart logistics platform featuring sub-optimal routing and socket pipelines. Fought through 36 hours of sleep deprivation to take 1st place.",
+        "icon": "trophy",
+        "link": "https://github.com"
+      },
+      {
+        "id": "03",
+        "category": "Cloud Architecture",
+        "title": "AWS Solutions Architect",
+        "context": "Amazon Web Services",
+        "description": "Validated expertise in designing distributed, fault-tolerant cloud topologies, edge optimization vectors, and scalable backend infrastructure.",
+        "icon": "shield",
+        "link": "https://aws.amazon.com"
+      },
+      {
+        "id": "04",
+        "category": "Leadership",
+        "title": "Captain, Null Pointers",
+        "context": "Smart India Hackathon '25",
+        "description": "Led an engineering cohort of 6 to build embedded IoT systems for regional ecological automation tracks.",
+        "icon": "users",
+        "link": ""
+      }
+    ]
   }
 }
